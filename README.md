@@ -28,8 +28,8 @@ To evolve any neural network using the Wavelet-based Encoding take the following
   * Pass on the dimension that ensures maximal spatial correlation in the network weights i.e. for an input matrix of 
     dimension *h x mn* that receives flatted pixel input of an *m x n* image, use *h x m x n* in the tensor_dim.
 3. Compute the number of approximation wavelet coefficients to be evolved using `get_gen_total(tensor_dim, l)`.
-4. Choose the wavelet-basis function to use, and compute the corresponding polyphase filter coefficients **poly** 
-(see `wavelet_functions.py` for some pre-implemented filters.
+4. Choose the wavelet-basis function to use, and compute the corresponding polyphase filter coefficients **poly**. 
+   See `wavelet_functions.py` for some pre-implemented filters.
   * Transform lists of low- and high-pass filter coefficients to polyphase form using `classic2polyphase`.
   * Use `lattice_decomposition` to compute wavelet basis function from an arbitrary set of parameters (which can be 
     evolved alongside the wavelet coefficients).
