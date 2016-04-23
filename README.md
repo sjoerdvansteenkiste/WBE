@@ -1,6 +1,6 @@
 # A Wavelet-based Encoding for Neuroevolution
 
-The code in this repository implements the Wavelet-based Encoding as proposed our conference paper: A Wavelet-based Encoding for Neuroevolution (
+The code in this repository implements the Wavelet-based Encoding as proposed in our conference paper: A Wavelet-based Encoding for Neuroevolution (
 http://dx.doi.org/10.1145/2908812.2908905) to appear at GECCO'16.
 
 
@@ -19,7 +19,8 @@ python setup.py install
 
 ## Usage 
 
-To evolve any neural network using the Wavelet-based Encoding:
+
+To evolve any neural network using the Wavelet-based Encoding take the following steps:
 
 1. Determine the level of compression **l**
 2. Construct a list **tensor_dim** containing all network weight-tensor dimensions.
@@ -34,3 +35,4 @@ To evolve any neural network using the Wavelet-based Encoding:
 5. Use `decode(poly, genes, tensor_dim, l)` to decode the approximation wavelet coefficients into a list of weight 
 tensors of the specified dimension.
 
+See **examples/genes_to_weights.py** for an example. 
