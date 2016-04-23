@@ -17,5 +17,3 @@ poly = wbe.lattice_decomposition(in_theta=[.23, .56])
 
 # compute the list of weight tensors from the wavelet-coefficients -- genes
 tensor_list = wbe.decode(poly, genes, tensor_dim, l)
-
-print tensor_list[1]
