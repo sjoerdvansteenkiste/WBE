@@ -1,6 +1,4 @@
 from numpy import max, concatenate, dot, zeros_like, array, newaxis, mod
-import numpy as np
-import utilities as utils
 
 
 def dwt(s, poly, l=1):
