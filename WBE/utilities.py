@@ -20,7 +20,7 @@ def get_gene_total(tensor_dim, l):
     """
     n_coeff = 0
     for dim in tensor_dim:
-        assert np.max(np.mod(np.array(dim), 2 ** l)) == 0, 'cube dimension ({}) does not allow for a {}-level encoding'\
+        assert np.max(np.mod(np.array(dim), 2 ** l)) == 0, 'tensor dimension ({}) does not allow for a {}-level encoding'\
             .format(dim, l)
 
         n_coeff += np.prod(np.array(dim)/(2**l))
