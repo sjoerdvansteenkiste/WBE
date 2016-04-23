@@ -1,7 +1,7 @@
 # A Wavelet-based Encoding for Neuroevolution
 
 The code in this repository implements the Wavelet-based Encoding as proposed in our conference paper: A Wavelet-based Encoding for Neuroevolution (
-http://dx.doi.org/10.1145/2908812.2908905) to appear at GECCO'16.
+http://dx.doi.org/10.1145/2908812.2908905) to appear at GECCO'16. The provided implementation supports weight-tensors up to three dimensions. 
 
 
 ## Installation
@@ -22,7 +22,7 @@ python setup.py install
 
 To evolve any neural network using the Wavelet-based Encoding take the following steps:
 
-1. Determine the level of compression **l**
+1. Determine the level of compression **l**.
 2. Construct a list **tensor_dim** containing all network weight-tensor dimensions.
   * Ensure each tensor dim is divisible by 2^l (pad by increasing the dim in **tensor_dim** if necessary).
   * Pass on the dimension that ensures maximal spatial correlation in the network weights i.e. for an input matrix of 
