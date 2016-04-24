@@ -27,7 +27,7 @@ def daubechies(order, polyphase=True):
     return c, d
 
 
-def lattice_decomposition(in_theta, p=1):
+def lattice_structure(in_theta, p=1):
     """
     Returns a polyphase matrix containing the wavelet filters. Order of the returned filter is len(in_theta)+1, i.e.
     for p = 1 and in_theta [.455] this yields a zeroth-order balanced wavelet of degree n = 2 (i.e. 4 coefficients)

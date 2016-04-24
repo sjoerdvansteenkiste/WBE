@@ -13,7 +13,7 @@ genes = np.random.randn(n_genes)
 poly = wbe.daubechies(order=2)
 
 # or a lattice decomposition to support dynamic wavelet basis function evolution
-poly = wbe.lattice_decomposition(in_theta=[.23, .56])
+poly = wbe.lattice_structure(in_theta=[.23, .56])
 
 # compute the list of weight tensors from the wavelet-coefficients -- genes
 tensor_list = wbe.decode(poly, genes, tensor_dim, l)

@@ -31,7 +31,7 @@ To evolve any neural network using the Wavelet-based Encoding take the following
 4. Choose the wavelet-basis function to use, and compute the corresponding polyphase filter coefficients **poly**. 
    See `wavelet_functions.py` for some pre-implemented filters.
   * Transform lists of low- and high-pass filter coefficients to polyphase form using `classic2polyphase`.
-  * Use `lattice_decomposition` to compute wavelet basis function from an arbitrary set of parameters (which can be 
+  * Use `lattice_structure` to compute wavelet basis function from an arbitrary set of parameters (which can be 
     evolved alongside the wavelet coefficients).
 5. Use `decode(poly, genes, tensor_dim, l)` to decode the approximation wavelet coefficients into a list of weight 
 tensors of the specified dimension.
