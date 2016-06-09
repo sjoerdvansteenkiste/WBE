@@ -24,7 +24,7 @@ To evolve any neural network using the Wavelet-based Encoding take the following
 
 1. Determine the level of compression **l**.
 2. Construct a dictionary **structure** containing all weight-tensor dimensions, which outlines the structure of the 
-phenotoype, e.g. ```python structure = {'L1': {'W': (12, 4, 6, 8), 'bias': (12, 14, 10)}, 'L2': {'theta': 8}}```
+phenotoype, e.g. ```structure = {'L1': {'W': (12, 4, 6, 8), 'bias': (12, 14, 10)}, 'L2': {'theta': 8}}```
   * Ensure each tensor dim is divisible by 2^l (pad by increasing the dim in **tensor_dim** if necessary).
   * Pass on the dimension that ensures maximal spatial correlation in the network weights i.e. for an input matrix of 
     dimension *h x mn* that receives flatted pixel input of an *m x n* image, use *h x m x n* instead.
