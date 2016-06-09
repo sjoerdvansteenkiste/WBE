@@ -1,7 +1,7 @@
 # A Wavelet-based Encoding for Neuroevolution
 
 The code in this repository implements the Wavelet-based Encoding as proposed in our conference paper: A Wavelet-based Encoding for Neuroevolution (
-http://dx.doi.org/10.1145/2908812.2908905) to appear at GECCO'16. The provided implementation supports weight-tensors up to three dimensions. 
+http://dx.doi.org/10.1145/2908812.2908905) to appear at GECCO'16.
 
 
 ## Installation
