@@ -2,7 +2,7 @@ import numpy as np
 from WBE import utilities
 
 
-def daubechies(order, polyphase=True):
+def daubechies(order):
     """
     returns the lowpass and highpass filter coefficients for a Daubechies wavelet
     :param order: the order of the wavelet function
@@ -21,10 +21,26 @@ def daubechies(order, polyphase=True):
     else:
         raise ValueError('order is not supported')
 
-    if polyphase:
-        return utilities.classic2polyphase(c, d)
+    return utilities.classic2polyphase(c, d)
 
-    return c, d
+
+def polynomial_matrix_multiplication(M1, M2):
+    """
+    Helper function to perform matrix multiplication where each matrix entry contains the coefficients of a polynomial
+    matrix multiplication is of the form M = M1 x M2
+    :param M1: The left input matrix
+    :param M2: The right input matrix
+    :return: the matrix product M=M1M2
+    """
+
+    M = np.zeros((M1.shape[0], M2.shape[1], M1.shape[2] + M2.shape[2] - 1))
+
+    for i in range(M1.shape[0]):
+        for j in range(M2.shape[1]):
+            for k in range(M1.shape[1]):
+                M[i, j, :] += np.convolve(M1[i, k, :], M2[k, j, :])
+
+    return M
 
 
 def lattice_structure(in_theta, p=1):
@@ -39,8 +55,7 @@ def lattice_structure(in_theta, p=1):
     if p > 1:
         raise ValueError("p > 1 is currently unsupported, use p = 1 for a single vanishing moment")
 
-    H = np.eye(2)
-    n_coeffs = 1
+    H = np.eye(2)[:, :, np.newaxis]
     n = len(in_theta)+p
 
     theta = in_theta
@@ -48,35 +63,16 @@ def lattice_structure(in_theta, p=1):
         theta = np.concatenate((np.array([np.pi / 4 - np.mod(sum(theta), 2 * np.pi)]), theta))
 
     for k in range(n-1, 0, -1):
-        rot = np.array([[np.cos(theta[k]), 0, 0, -np.sin(theta[k])], [np.sin(theta[k]), 0, 0, np.cos(theta[k])]])
-        H = polynomial_matrix_multiplication(H, np.array(rot), n_coeffs, 2)
-        n_coeffs += 1
+        rot = np.array([[[0, np.cos(theta[k])],
+                         [0, -np.sin(theta[k])]],
+                        [[np.sin(theta[k]), 0],
+                         [np.cos(theta[k]), 0]]])
 
-    rot = np.array([[np.cos(theta[0]), np.sin(theta[0])], [np.sin(theta[0]), -np.cos(theta[0])]])
+        H = polynomial_matrix_multiplication(H, np.array(rot))
 
-    H = polynomial_matrix_multiplication(H, np.array(rot), n_coeffs, 1)
+    rot = np.array([[np.cos(theta[0]), np.sin(theta[0])],
+                    [np.sin(theta[0]), -np.cos(theta[0])]])[:, :, np.newaxis]
+
+    H = polynomial_matrix_multiplication(H, np.array(rot))
 
     return H
-
-
-# assume coefficients are stored as Ez0 Oz0 Ez-1 Oz-2
-def polynomial_matrix_multiplication(M1, M2, n_coeffs_M1, n_coeffs_M2):
-    """
-    Helper function to perform matrix multiplication where each matrix entry contains the coefficients of a polynomial
-    matrix multiplication is of the form M = M1 x M2
-    :param M1: The left input matrix
-    :param M2: The right input matrix
-    :param n_coeffs_M1: The number of coefficients (of the polynomial) stored in M1
-    :param n_coeffs_M2: The number of coefficients (of the polynomial) stored in M2
-    :return: the matrix product M=M1M2
-    """
-    new_n_coeffs = n_coeffs_M1+n_coeffs_M2-1
-    M = np.zeros((2, 2*new_n_coeffs))
-
-    for i in range(2):
-        for j in range(2):
-            for k in range(2):
-                new_coefficients = np.convolve(M1[i, k:M1.shape[1]:2], M2[k, j:M2.shape[1]:2])
-                for coeff in range(new_n_coeffs):
-                    M[i, j+(2*coeff)] += new_coefficients[new_n_coeffs-coeff-1]
-    return M
