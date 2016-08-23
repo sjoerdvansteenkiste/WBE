@@ -1,7 +1,7 @@
 # A Wavelet-based Encoding for Neuroevolution
 
 The code in this repository implements the Wavelet-based Encoding as proposed in our conference paper: A Wavelet-based Encoding for Neuroevolution (
-http://dx.doi.org/10.1145/2908812.2908905) to appear at GECCO'16.
+http://dx.doi.org/10.1145/2908812.2908905), which appeared at GECCO'16.
 
 
 ## Installation
@@ -10,7 +10,7 @@ Quick instructions for installation.
 
 ```bash
 # Get WBE
-git clone git@github.com:sjoerdvansteenkiste/wavelets.git
+git clone git@github.com:sjoerdvansteenkiste/WBE.git
 # Install
 cd WBE
 pip install -r requirements.txt
