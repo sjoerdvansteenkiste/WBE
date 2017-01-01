@@ -12,9 +12,9 @@ def embed(genes, structure, l):
 
     slc = [slice(None)] * len(embedding.shape)
     for i in range(len(embedding.shape)):
-        slc[i] = slice(0, embedding.shape[i]/(2**l))
+        slc[i] = slice(0, embedding.shape[i]//(2**l))
 
-    embedding[slc] = genes.reshape(np.array(structure)/(2**l))
+    embedding[slc] = genes.reshape(np.array(structure)//(2**l))
 
     return embedding
 
@@ -25,7 +25,7 @@ def _decode(chromosome, poly, structure, l):
                                                        "shape ({}) does not allow for a {}-level " \
                                                        "decomposition".format(structure, l)
 
-        n_genes = np.prod(np.array(structure)/(2**l))
+        n_genes = np.prod(np.array(structure)//(2**l))
         genes, chromosome = np.array_split(chromosome, [n_genes])
 
         return wav.bidwt(embed(genes, structure, l), poly, l), chromosome

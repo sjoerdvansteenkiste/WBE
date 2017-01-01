@@ -12,7 +12,7 @@ structure = {'L1': {'W': (12, 4, 6, 8), 'bias': (12, 14, 10)}, 'L2': {'theta': 8
 # compute number of genes to encode such a list of tensors, for a given l
 l = 1
 n_genes = wbe.encoding_dimensionality(structure, l)
-chromosome = np.random.randn(n_genes)
+chromosome = np.random.randn(int(n_genes))
 
 # define the polyphase wavelet filter either use Daubechies
 poly = wbe.daubechies(order=2)

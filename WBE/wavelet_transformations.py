@@ -33,7 +33,7 @@ def _idwt(s, poly):
     :return: the transformed signal
     """
 
-    s = np.array([s[:len(s)/2], s[len(s)/2:]])
+    s = np.array([s[:len(s)//2], s[len(s)//2:]])
 
     recon = zeros_like(s, dtype=float)
     for z in range(poly.shape[2]):
@@ -76,7 +76,7 @@ def fdwt(s, poly, l=1):
     for level in range(l):
         slc = [slice(None)] * len(s.shape)
         for i in range(len(s.shape)):
-            slc[i] = slice(0, s.shape[i] / (2**level))
+            slc[i] = slice(0, s.shape[i] // (2**level))
 
         s[slc] = dwt(s[slc], poly)
 
@@ -87,7 +87,7 @@ def bidwt(s, poly, l=1):
     for level in reversed(range(l)):
         slc = [slice(None)] * len(s.shape)
         for i in range(len(s.shape)):
-            slc[i] = slice(0, s.shape[i] / (2**level))
+            slc[i] = slice(0, s.shape[i] // (2**level))
 
         s[slc] = idwt(s[slc], poly)
 
