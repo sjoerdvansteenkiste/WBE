@@ -17,7 +17,7 @@ def _dwt(s, poly):
     for z in range(poly.shape[2]):
         decomp += dot(poly[:, :, z], concatenate((s[:, z:], s[:, :z]), axis=1))
 
-    return np.concatenate((decomp[0], decomp[1]), axis=1)
+    return np.concatenate((decomp[0], decomp[1]), axis=0).transpose()
 
 
 def _idwt(s, poly):
