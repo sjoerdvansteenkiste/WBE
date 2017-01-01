@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+from __future__ import (print_function, division, absolute_import, unicode_literals)
+
 from WBE import wbe_encoding
 from WBE import utilities
 from WBE import wavelet_functions

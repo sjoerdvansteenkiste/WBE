@@ -1,5 +1,10 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+from __future__ import (print_function, division, absolute_import, unicode_literals)
+
 import numpy as np
-import wavelet_transformations as wav
+import WBE.wavelet_transformations as wav
 
 
 def embed(genes, structure, l):
